@@ -8,15 +8,34 @@ services:
       - ./php/src:/var/www/html
     depends_on:
       - db
+    networks:
+      - mynet
 
   db:
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: recman
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testpass
     ports:
       - "3307:3306"
-    volumes:
-      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - mynet
+
+  phpmyadmin:
+    image: phpmyadmin:5.2
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+    depends_on:
+      - db
+    networks:
+      - mynet
+
+networks:
+  mynet:
+
