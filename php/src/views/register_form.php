@@ -7,6 +7,13 @@
 </head>
 <body class="container mt-5">
 <h2>User Registration</h2>
+
+<?php if (!empty($errors)): ?>
+    <div class="alert alert-danger">
+        <?php foreach ($errors as $error) echo "<p>$error</p>"; ?>
+    </div>
+<?php endif; ?>
+
 <form method="POST" action="">
     <div class="mb-3">
         <label>First name</label>
