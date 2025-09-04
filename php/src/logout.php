@@ -1,6 +1,8 @@
 <?php
-require_once "config.php";
-require_once "controllers/AuthController.php";
 
-$auth = new AuthController($db);
-$auth->logout();
+require_once __DIR__ . '/init.php';
+
+session_destroy();
+header("Location: /login.php");
+
+exit;

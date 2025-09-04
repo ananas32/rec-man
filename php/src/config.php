@@ -1,4 +1,5 @@
 <?php
+
 $host = 'db';
 $dbname = 'recman';
 $user = 'testuser';
